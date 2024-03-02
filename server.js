@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-// app.use(express.json());
+app.use(express.json());
 
 const videosRoute = require("./routes/videos");
 app.use("/videos", videosRoute);
