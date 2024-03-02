@@ -7,9 +7,9 @@ const readVideosData = () => {
   return JSON.parse(videosData);
 };
 
+//GET endpoint for side videos
 router.get("/", (req, res) => {
   const videoData = readVideosData();
-  // console.log(videoData);
   //getting small amount of data for each video
   const sideVideoData = videoData.map((video) => ({
     id: video.id,
@@ -20,11 +20,14 @@ router.get("/", (req, res) => {
   res.json(sideVideoData);
 });
 
+//GET endpoint for main videos
 router.get("/:id", (req, res) => {
   const videoData = readVideosData();
   //getting all the details for a specific video
   const mainVideoData = videoData.find((video) => req.params.id === video.id);
   res.json(mainVideoData);
 });
+
+//POST endpoint to add a video
 
 module.exports = router;
