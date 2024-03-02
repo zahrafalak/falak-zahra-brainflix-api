@@ -6,10 +6,6 @@ const port = 3000;
 app.use(cors());
 // app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("main app");
-});
-
 const videosRoute = require("./routes/videos");
 app.use("/videos", videosRoute);
 

@@ -9,6 +9,7 @@ const readVideosData = () => {
 
 router.get("/", (req, res) => {
   const videoData = readVideosData();
+  // console.log(videoData);
   //getting small amount of data for each video
   const sideVideoData = videoData.map((video) => ({
     id: video.id,
@@ -17,6 +18,13 @@ router.get("/", (req, res) => {
     image: video.image,
   }));
   res.json(sideVideoData);
+});
+
+router.get("/:id", (req, res) => {
+  const videoData = readVideosData();
+  //getting all the details for a specific video
+  const mainVideoData = videoData.find((video) => req.params.id === video.id);
+  res.json(mainVideoData);
 });
 
 module.exports = router;
