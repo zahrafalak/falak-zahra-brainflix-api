@@ -30,7 +30,8 @@ router
       id: uniqid(),
       title: req.body.title,
       description: req.body.description,
-      image: "/images/cute-cat.jpg",
+      image: req.body.image,
+      channel: "Your channel",
     };
     console.log(newVideo);
     const videos = readVideosData();
