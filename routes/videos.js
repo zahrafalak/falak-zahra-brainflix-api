@@ -32,6 +32,27 @@ router
       description: req.body.description,
       image: req.body.image,
       channel: "Your channel",
+      views: "72,342",
+      likes: "8,785",
+      duration: "2:59",
+      timestamp: 1630656720000,
+      comments: [
+        {
+          id: "6ff4314c-acde-4c91-a753-95cb7a366ee9",
+          name: "Lightening McQueen",
+          comment: "Love it!",
+          likes: 0,
+          timestamp: 1632227521000,
+        },
+        {
+          id: "894b2ef9-640e-4d55-95ac-c65cfc39d693",
+          name: "Doc Hudson",
+          comment:
+            "Drifting along the coast in a city on the water. Such incredible destinations to see all around the world.",
+          likes: 1,
+          timestamp: 1631976360000,
+        },
+      ],
     };
     console.log(newVideo);
     const videos = readVideosData();
