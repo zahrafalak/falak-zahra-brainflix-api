@@ -24,7 +24,6 @@ router
   })
   //POST endpoint to add a video
   .post("/", (req, res) => {
-    console.log(req.body);
     // //create a new Video with a unique ID
     const newVideo = {
       id: uniqid(),
@@ -57,17 +56,42 @@ router
     console.log(newVideo);
     const videos = readVideosData();
     videos.push(newVideo);
-    console.log(videos);
     fs.writeFileSync("./data/videos.json", JSON.stringify(videos));
     res.status(201).json(newVideo);
   });
 
 //GET endpoint for main videos
 router.get("/:id", (req, res) => {
-  console.log("get id");
   const videoData = readVideosData();
   //getting all the details for a specific video
   const mainVideoData = videoData.find((video) => req.params.id === video.id);
+  res.json(mainVideoData);
+});
+
+//POST endpoint for comments
+router.post("/:id/comments", (req, res) => {
+  const videos = readVideosData();
+  const videoID = req.params.id;
+  console.log(videoID);
+  //Creating the new comment
+  const newComment = {
+    id: uniqid(),
+    name: req.body.user,
+    comment: req.body.comment,
+    likes: 0,
+    timestamp: Date.now(),
+  };
+  console.log(newComment);
+
+  const targetVideo = videos.find((video) => {
+    return video.id === videoID;
+  });
+  targetVideo.comments.unshift(newComment);
+  fs.writeFileSync("./data/videos.json", JSON.stringify(videos));
+
+  const videoData = readVideosData();
+  const mainVideoData = videoData.find((video) => videoID === video.id);
+  console.log(mainVideoData);
   res.json(mainVideoData);
 });
 
