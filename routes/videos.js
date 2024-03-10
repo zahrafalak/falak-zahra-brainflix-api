@@ -23,7 +23,7 @@ router
   })
   //POST endpoint to add a video
   .post("/", (req, res) => {
-    // //create a new Video with a unique ID
+    //create a new Video with a unique ID
     const newVideo = {
       id: uniqid(),
       title: req.body.title,
