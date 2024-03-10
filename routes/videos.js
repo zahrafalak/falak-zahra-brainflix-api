@@ -11,7 +11,6 @@ const readVideosData = () => {
 router
   //GET endpoint for side videos
   .get("/", (req, res) => {
-    console.log("get root");
     const videoData = readVideosData();
     //getting small amount of data for each video
     const sideVideoData = videoData.map((video) => ({
@@ -53,7 +52,6 @@ router
         },
       ],
     };
-    console.log(newVideo);
     const videos = readVideosData();
     videos.push(newVideo);
     fs.writeFileSync("./data/videos.json", JSON.stringify(videos));
@@ -72,7 +70,6 @@ router.get("/:id", (req, res) => {
 router.post("/:id/comments", (req, res) => {
   const videos = readVideosData();
   const videoID = req.params.id;
-  console.log(videoID);
   //Creating the new comment
   const newComment = {
     id: uniqid(),
@@ -81,7 +78,6 @@ router.post("/:id/comments", (req, res) => {
     likes: 0,
     timestamp: Date.now(),
   };
-  console.log(newComment);
 
   const targetVideo = videos.find((video) => {
     return video.id === videoID;
@@ -91,7 +87,6 @@ router.post("/:id/comments", (req, res) => {
 
   const videoData = readVideosData();
   const mainVideoData = videoData.find((video) => videoID === video.id);
-  console.log(mainVideoData);
   res.json(mainVideoData);
 });
 
