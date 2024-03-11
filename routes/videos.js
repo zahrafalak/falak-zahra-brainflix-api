@@ -21,9 +21,10 @@ router
     }));
     res.json(sideVideoData);
   })
-  //POST endpoint to add a video
+  //POST endpoint to add a video from upload page
   .post("/", (req, res) => {
-    //create a new Video with a unique ID
+    //Create a new Video with a unique ID
+    // Add some placeholder values for fields that are not coming form the front-end
     const newVideo = {
       id: uniqid(),
       title: req.body.title,
@@ -52,6 +53,8 @@ router
         },
       ],
     };
+    //Read videos data from the JSOn file, push the new video in,
+    // and write the new data back to the file
     const videos = readVideosData();
     videos.push(newVideo);
     fs.writeFileSync("./data/videos.json", JSON.stringify(videos));
